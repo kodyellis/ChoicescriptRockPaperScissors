@@ -1,0 +1,136 @@
+
+*comment Copyright 2010 by Dan Fabulich.
+*comment 
+*comment Dan Fabulich licenses this file to you under the
+*comment ChoiceScript License, Version 1.0 (the "License"); you may
+*comment not use this file except in compliance with the License. 
+*comment You may obtain a copy of the License at
+*comment 
+*comment  http://www.choiceofgames.com/LICENSE-1.0.txt
+*comment 
+*comment See the License for the specific language governing
+*comment permissions and limitations under the License.
+*comment 
+*comment Unless required by applicable law or agreed to in writing,
+*comment software distributed under the License is distributed on an
+*comment "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+*comment either express or implied.
+
+*title Rock,Paper,Scissors!
+*scene_list
+	startup
+	ending
+	
+*create win 0
+*create lose 0
+*create tie 0
+*create side 0
+
+Welcome to your very first ChoiceScript game!
+Using the innovative Choicescript computer language,this is also the first video game I ever made!
+.............................
+Okay,maybe not a video game,but this is more like a Choose Your Own Adventure book.
+*line_break
+Just on a computer.
+*line_break
+Like a Video Game.
+
+Anyhow,yeah,this game is called Rock,Paper,Scissors,in which you...well you know what to do.I mean,who hasn't played this awesome game?
+*line_break
+To see how many wins,losses,and tie you have,just click the Show Stats button.The game ends when you get 3 wins,losses,or ties,so watch out!
+
+And good luck!
+
+
+
+
+
+*page_break
+I pick:
+*label game
+*if win = 3
+	Congratulations,you won!May  your luck hold up next time!
+	*finish
+*if lose = 3
+	You lose this time,better luck next  time!
+	*finish
+*if tie = 3
+	Well,well,it looks like it's a tie!better luck next time!
+	*finish
+*fake_choice	
+	#Rock!
+		And your opponent chooses:
+		*rand side 1 3
+		*if side = 1
+			*page_break
+			Paper!
+			Paper wins!
+			*image cl.jpg
+			*set lose +1
+			*goto game
+		*elseif side = 2
+			*page_break
+			Scissors!
+			Rock wins!
+			*image cl.jpg
+			*set win +1
+			*goto game
+		
+		*elseif side = 3
+			*page_break
+			Rock!
+			It's a tie!
+			*image cl.jpg
+			*set tie +1
+			*goto game
+	
+	#Paper!
+		And your opponent chooses:
+		*rand side 1 3
+		*if side = 1
+			*page_break
+			Paper!
+			It's a tie!
+			*set tie +1
+			*goto game
+			
+		*elseif side = 2
+			*page_break
+			Scissors!
+			Scissors wins!
+			*set lose +1
+			*goto game
+		
+		*elseif side = 3
+			*page_break
+			Rock!
+			Paper wins!
+			*set win +1
+			*goto game
+		
+		
+	#Scissors!
+		And your opponent chooses:
+		*rand side 1 3
+		*if side = 1
+			*page_break
+			Paper!
+			Scissors wins!
+			*set win +1
+			*goto game
+			
+		*elseif side = 2
+			*page_break
+			Scissors!
+			It's a tie!
+			*set tie+1
+			*goto game
+		
+		*elseif side = 3
+			*page_break
+			Rock!
+			Rock wins!
+			*set lose +1
+			*goto game
+		
+*finish
